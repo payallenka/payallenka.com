@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useRef, useEffect, useState } from "react";
-
 import { useMousePosition } from './useMousePosition'; // Adjust this path if necessary
 
 interface ParticlesProps {
@@ -12,13 +11,13 @@ interface ParticlesProps {
 	refresh?: boolean;
 }
 
-export default function Particles({
+const Particles: React.FC<ParticlesProps> = ({
 	className = "",
 	quantity = 30,
 	staticity = 50,
 	ease = 50,
 	refresh = false,
-}: ParticlesProps) {
+}) => {
 	const canvasRef = useRef<HTMLCanvasElement>(null);
 	const canvasContainerRef = useRef<HTMLDivElement>(null);
 	const context = useRef<CanvasRenderingContext2D | null>(null);
@@ -43,7 +42,7 @@ export default function Particles({
 
 	useEffect(() => {
 		onMouseMove();
-	}, [mousePosition.x, mousePosition.y]);
+	}, [mousePosition]);
 
 	useEffect(() => {
 		initCanvas();
@@ -148,8 +147,7 @@ export default function Particles({
 
 	const drawParticles = () => {
 		clearContext();
-		const particleCount = quantity;
-		for (let i = 0; i < particleCount; i++) {
+		for (let i = 0; i < quantity; i++) {
 			const circle = circleParams();
 			drawCircle(circle);
 		}
@@ -170,12 +168,11 @@ export default function Particles({
 	const animate = () => {
 		clearContext();
 		circles.current.forEach((circle: Circle, i: number) => {
-			// Handle the alpha value
 			const edge = [
-				circle.x + circle.translateX - circle.size, // distance from left edge
-				canvasSize.current.w - circle.x - circle.translateX - circle.size, // distance from right edge
-				circle.y + circle.translateY - circle.size, // distance from top edge
-				canvasSize.current.h - circle.y - circle.translateY - circle.size, // distance from bottom edge
+				circle.x + circle.translateX - circle.size,
+				canvasSize.current.w - circle.x - circle.translateX - circle.size,
+				circle.y + circle.translateY - circle.size,
+				canvasSize.current.h - circle.y - circle.translateY - circle.size,
 			];
 			const closestEdge = edge.reduce((a, b) => Math.min(a, b));
 			const remapClosestEdge = parseFloat(
@@ -197,19 +194,15 @@ export default function Particles({
 			circle.translateY +=
 				(mouse.current.y / (staticity / circle.magnetism) - circle.translateY) /
 				ease;
-			// circle gets out of the canvas
 			if (
 				circle.x < -circle.size ||
 				circle.x > canvasSize.current.w + circle.size ||
 				circle.y < -circle.size ||
 				circle.y > canvasSize.current.h + circle.size
 			) {
-				// remove the circle from the array
 				circles.current.splice(i, 1);
-				// create a new circle
 				const newCircle = circleParams();
 				drawCircle(newCircle);
-				// update the circle position
 			} else {
 				drawCircle(
 					{
@@ -232,4 +225,6 @@ export default function Particles({
 			<canvas ref={canvasRef} />
 		</div>
 	);
-}
+};
+
+export default Particles;
