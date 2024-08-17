@@ -62,7 +62,7 @@ const Particles: React.FC<ParticlesProps> = ({
       const circle = circleParams();
       drawCircle(circle);
     }
-  }, [quantity, drawCircle]);
+  }, [quantity, drawCircle, clearContext]);
 
   const clearContext = useCallback(() => {
     if (context.current) {
@@ -229,4 +229,3 @@ const Particles: React.FC<ParticlesProps> = ({
 };
 
 export default Particles;
-
