@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import Card from "./cards";
-import Particles from "../components/Particles"; // Updated path
+import Particles from "..//components/Particles"; // Updated path
 
 export default function Projects() {
   const [darkMode, setDarkMode] = useState(true); // Default to dark mode
