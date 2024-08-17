@@ -2,32 +2,102 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
+/* Optional: Define custom dark mode styles */
+@layer base {
+  html {
+    /* Default light mode styles */
+    background-color: #f5f5f5; /* Off-white or gray */
+    color: black;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+  .dark html {
+    /* Dark mode styles */
+    background-color: black;
+    color: white;
+  }
+
+  /* Tilt effect for navigation links */
+  .transform {
+    transform: perspective(1000px) rotateX(0) rotateY(0);
+    transition: transform 0.3s ease;
+  }
+
+  .transform:hover {
+    transform: perspective(1000px) rotateX(-5deg) rotateY(5deg);
+  }
+
+  /* Underline effect on hover */
+  .relative {
+    position: relative;
+  }
+
+  .relative::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -0.2rem;
+    left: 0;
+    width: 100%;
+    height: 0.2rem;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+
+  .hover\:scale-105:hover {
+    transform: scale(1.05);
+  }
+
+  .hover\:underline:hover::after {
+    transform: scaleX(1);
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px); /* Optional: Adds a slight upward motion */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Glide-in animation */
+@keyframes glide {
+  0% {
+    transform: translateY(-50%);
+    opacity: 0;
   }
+  50% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+.glide-in {
+  animation: glide 2s ease-out forwards;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.glide-in {
+  animation: glide 2s ease-out forwards, float 1.5s ease-in-out infinite 2s;
 }
