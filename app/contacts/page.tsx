@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { Github, Mail, Twitter,Discord,Medium,Instagram,Linkedin } from "lucide-react";
+import { Github,  Twitter,  Instagram, Linkedin } from "lucide-react";
 import Card from "./cards";
-import Particles from "..//components/Particles";
+import Particles from "../components/Particles";
 
 export default function Projects() {
   const [darkMode, setDarkMode] = useState(true); // Default to dark mode
@@ -28,25 +28,23 @@ export default function Projects() {
 
   const projects = [
     {
-        icon: <Github size={20} />,
-        link: "https://github.com/payallenka",
-        label: "Github",
-        handle: "PayalLenka",
+      icon: <Github size={20} />,
+      link: "https://github.com/payallenka",
+      label: "Github",
+      handle: "PayalLenka",
     },
     {
-        icon: <Linkedin size={20} />,
-        link: "https://www.linkedin.com/in/payallenka/",
-        label: "LinkedIn",
-        handle: "payallenka",
+      icon: <Linkedin size={20} />,
+      link: "https://www.linkedin.com/in/payallenka/",
+      label: "LinkedIn",
+      handle: "payallenka",
     },
     {
-        icon: <Instagram size={20} />,
-        link: "https://www.instagram.com/payallenka_269/",
-        label: "Instagram",
-        handle: "@payallenka_269",
+      icon: <Instagram size={20} />,
+      link: "https://www.instagram.com/payallenka_269/",
+      label: "Instagram",
+      handle: "@payallenka_269",
     },
-    
-
     // Add more projects here as needed
   ];
 
@@ -76,7 +74,7 @@ export default function Projects() {
             Home
           </a>
           <a
-            href="..//projects"
+            href="../projects"
             className={`text-xl ${
               darkMode ? "hover:text-gray-400" : "hover:text-gray-600"
             }`}
@@ -93,7 +91,7 @@ export default function Projects() {
           </button>
         </nav>
 
-        <h1 className="text-4xl font-bold mb-12 text-center">Let's connect digitally !</h1>
+        <h1 className="text-4xl font-bold mb-12 text-center">Let"s connect digitally!</h1>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mx-auto max-w-screen-lg">
           {projects.map((project, index) => (
