@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import Card from "../components/Cards"; // Corrected import path
-import Particles from "../components/Particles"; // Corrected import path
+import Card from "..//components/Cards";
+import Particles from "..//components/Particles";
 
 export default function Projects() {
   const [darkMode, setDarkMode] = useState(true); // Default to dark mode
@@ -77,14 +77,14 @@ export default function Projects() {
         <nav className="flex justify-center space-x-10 mb-10">
           <a
             href="/"
-            className={`text-xl ${
+            className={`text-xl  ${
               darkMode ? "hover:text-gray-400" : "hover:text-gray-600"
             }`}
           >
             Home
           </a>
           <a
-            href="/contacts" // Corrected href path
+            href="..//contacts"
             className={`text-xl ${
               darkMode ? "hover:text-gray-400" : "hover:text-gray-600"
             }`}
@@ -103,7 +103,7 @@ export default function Projects() {
 
         <h1 className="text-4xl font-bold mb-12 text-center">My Work</h1>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mx-auto max-w-screen-lg">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mx-auto max-w-screen-lg $">
           {projects.map((project, index) => (
             <Card
               key={index}
