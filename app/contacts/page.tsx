@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import Card from "./cards";
 import Particles from "../components/Particles"; // Updated path
 
@@ -9,21 +9,21 @@ export default function Projects() {
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const handleMouseMove = (event: MouseEvent) => {
-      if (containerRef.current) {
-        const { offsetWidth: width, offsetHeight: height, offsetLeft, offsetTop } = containerRef.current;
-        const x = ((event.clientX - offsetLeft + window.scrollX) / width) * 100;
-        const y = ((event.clientY - offsetTop + window.scrollY) / height) * 100;
-        setCursorPosition({ x, y });
-      }
-    };
+  const handleMouseMove = useCallback((event: MouseEvent) => {
+    if (containerRef.current) {
+      const { offsetWidth: width, offsetHeight: height, offsetLeft, offsetTop } = containerRef.current;
+      const x = ((event.clientX - offsetLeft + window.scrollX) / width) * 100;
+      const y = ((event.clientY - offsetTop + window.scrollY) / height) * 100;
+      setCursorPosition({ x, y });
+    }
+  }, []);
 
+  useEffect(() => {
     window.addEventListener("mousemove", handleMouseMove);
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
     };
-  }, []);
+  }, [handleMouseMove]);
 
   const projects = [
     {
@@ -104,3 +104,4 @@ export default function Projects() {
     </div>
   );
 }
+
