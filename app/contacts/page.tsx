@@ -87,7 +87,7 @@ export default function Projects() {
           </button>
         </nav>
 
-        <h1 className="text-4xl font-bold mb-12 text-center">Let's connect digitally!</h1>
+        <h1 className="text-4xl font-bold mb-12 text-center">Let&apos;s connect digitally!</h1>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mx-auto max-w-screen-lg">
           {projects.map((project, index) => (
